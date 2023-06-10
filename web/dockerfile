@@ -1,0 +1,48 @@
+FROM debian:11-slim
+
+RUN apt update
+
+# 回答求められたらデフォルト
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt -y install wget curl vim lsof sudo cron vsftpd
+
+# PHP
+RUN apt update && apt install -y lsb-release apt-transport-https ca-certificates wget gnupg
+RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
+RUN apt update
+RUN apt install -y php8.1
+# デフォルトの php のバージョン
+RUN update-alternatives --set php /usr/bin/php8.1
+
+# php package
+RUN apt install -y php8.1-mysql php8.1-mbstring php8.1-gd php8.1-xml php8.1-xmlrpc php8.1-curl php8.1-zip php8.1-intl php8.1-bcmath php8.1-soap php8.1-ldap php8.1-apcu
+
+
+# Apache
+RUN apt -y install apache2 libapache2-mod-php
+
+# composer
+RUN curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer
+
+# phpMyAdmin
+# RUN DEBIAN_FRONTEND=noninteractive apt install -y phpmyadmin
+# RUN curl -OL https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.tar.gz && \
+# tar xzvf phpMyAdmin-5.2.1-all-languages.tar.gz && \
+# mv phpMyAdmin-5.2.1-all-languages phpMyAdmin && \
+# rm -rf phpMyAdmin-5.2.1-all-languages.tar.gz && \
+# mv ./phpMyAdmin /usr/share/
+
+# Node.js
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt install -y nodejs
+
+# 日本時間
+ENV TZ=Asia/Tokyo
+# 言語設定 UTF-8を使えるようにする
+ENV LC_ALL C.UTF-8
+
+COPY cmd.sh /cmd.sh
+CMD ["sh" , "/cmd.sh"]

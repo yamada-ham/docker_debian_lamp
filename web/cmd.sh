@@ -1,0 +1,1 @@
+apache2ctl -D FOREGROUND && tail -f /dev/null
