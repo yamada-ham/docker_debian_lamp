@@ -28,7 +28,6 @@ RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
 
 # phpMyAdmin
-# RUN DEBIAN_FRONTEND=noninteractive apt install -y phpmyadmin
 # RUN curl -OL https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.tar.gz && \
 # tar xzvf phpMyAdmin-5.2.1-all-languages.tar.gz && \
 # mv phpMyAdmin-5.2.1-all-languages phpMyAdmin && \
