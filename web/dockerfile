@@ -20,6 +20,8 @@ RUN update-alternatives --set php /usr/bin/php8.1
 RUN apt install -y php8.1-mysql php8.1-mbstring php8.1-gd php8.1-xml php8.1-xmlrpc php8.1-curl php8.1-zip php8.1-intl php8.1-bcmath php8.1-soap php8.1-ldap php8.1-apcu
 
 
+RUN touch /var/log/php_errors.log && chmod 777 /var/log/php_errors.log
+
 # Apache
 RUN apt -y install apache2 libapache2-mod-php
 
