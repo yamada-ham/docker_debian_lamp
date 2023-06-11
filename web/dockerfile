@@ -5,7 +5,7 @@ RUN apt update
 # 回答求められたらデフォルト
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt -y install wget curl vim lsof sudo cron vsftpd
+RUN apt -y install wget curl vim lsof sudo cron supervisor vsftpd
 
 # PHP
 RUN apt update && apt install -y lsb-release apt-transport-https ca-certificates wget gnupg
@@ -18,7 +18,6 @@ RUN update-alternatives --set php /usr/bin/php8.1
 
 # php package
 RUN apt install -y php8.1-mysql php8.1-mbstring php8.1-gd php8.1-xml php8.1-xmlrpc php8.1-curl php8.1-zip php8.1-intl php8.1-bcmath php8.1-soap php8.1-ldap php8.1-apcu
-
 
 RUN touch /var/log/php_errors.log && chmod 777 /var/log/php_errors.log
 
@@ -39,6 +38,10 @@ RUN curl -sS https://getcomposer.org/installer | php && \
 # Node.js
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
     apt install -y nodejs
+
+
+# RUN useradd ftp-user && echo "ftp-user:tnTat7q5" | sudo chpasswd
+
 
 # 日本時間
 ENV TZ=Asia/Tokyo

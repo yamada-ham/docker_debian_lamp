@@ -13,6 +13,9 @@ services:
       - 482:82
       - 483:83
       - 484:84
+      - 443:443
+      - 21:21
+      - 30000-30100:30000-30100
       # - 3000:3000
     restart: always
     volumes:
@@ -20,9 +23,11 @@ services:
       - ./web/volumes/apache2:/etc/apache2
       - ./web/volumes/php/8.1/apache2/php.ini:/etc/php/8.1/apache2/php.ini
       - ./web/volumes/phpMyAdmin:/usr/share/phpMyAdmin
+      - ./web/volumes/supervisord.conf:/etc/supervisor/supervisord.conf
     working_dir: /var/www/html
     depends_on: 
       - db
+      - ftp
 
   db:
     build: ./db
@@ -39,3 +44,18 @@ services:
        - mysql-data:/var/lib/mysql
     tty: true
     
+  # ftp:
+  #   image: stilliard/pure-ftpd
+  #   container_name: pure-ftpd
+  #   ports:
+  #   - 21:21
+  #   - 30000-30100:30000-30100
+  #   volumes: 
+  #     - ./web/html:/home/test/html
+  #     - ./passwd:/etc/pure-ftpd/passwd
+  #   environment:
+  #     PUBLICHOST: "localhost"
+  #     FTP_USER_NAME: test
+  #     FTP_USER_PASS: test1234
+  #     FTP_USER_HOME: /home/test
+  #   restart: always
