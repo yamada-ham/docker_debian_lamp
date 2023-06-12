@@ -4,6 +4,10 @@
 ```
 PHP8.1
 MySQL8
+Apache
+Composer
+Node.js ver18.x
+FTP
 ```
 
 
