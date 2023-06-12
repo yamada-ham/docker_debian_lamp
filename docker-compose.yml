@@ -14,8 +14,9 @@ services:
       - 483:83
       - 484:84
       - 443:443
+      - 20:20
       - 21:21
-      - 30000-30100:30000-30100
+      - 30001-30005:30001-30005
       # - 3000:3000
     restart: always
     volumes:
@@ -24,6 +25,11 @@ services:
       - ./web/volumes/php/8.1/apache2/php.ini:/etc/php/8.1/apache2/php.ini
       - ./web/volumes/phpMyAdmin:/usr/share/phpMyAdmin
       - ./web/volumes/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./web/volumes/ftp/vsftpd.conf:/etc/vsftpd.conf
+      - ./web/volumes/ftp/ftp_dir:/var/www/ftp_dir
+      - ./web/volumes/ftp/user_conf:/etc/vsftpd/user_conf
+      - ./web/volumes/ftp/chroot_list:/etc/vsftpd/chroot_list
+      - ./web/volumes/ftp/user_list:/etc/vsftpd/user_list
     working_dir: /var/www/html
     depends_on: 
       - db
