@@ -39,22 +39,9 @@ RUN curl -sS https://getcomposer.org/installer | php && \
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
     apt install -y nodejs
 
-# RUN touch /etc/vsftpd/user_list && \
-# mkdir -p /etc/vsftpd/user_conf && \
-# touch /etc/vsftpd/chroot_list
-
 RUN mkdir -p /etc/vsftpd && touch /etc/vsftpd/user_list && mkdir -p /etc/vsftpd/user_conf && touch /etc/vsftpd/chroot_list && mkdir -p /var/run/vsftpd/empty
 
-
 RUN useradd -m -d /home/ftp-user ftp-user && echo "ftp-user:tnTat7q5" | chpasswd
-
-# RUN useradd ftp-user && \
-#     echo -e "tnTat7q5\ntnTat7q5" | passwd ftp-user
-    #tnTat7q5
-
-
-# RUN useradd ftp-user && echo "ftp-user:tnTat7q5" | sudo chpasswd
-
 
 # 日本時間
 ENV TZ=Asia/Tokyo
