@@ -33,7 +33,6 @@ services:
     working_dir: /var/www/html
     depends_on: 
       - db
-      - ftp
 
   db:
     build: ./db
@@ -44,24 +43,9 @@ services:
     platform: linux/x86_64
     environment:
       # MYSQL_USER: my_user
-      # MYSQL_PASSWORD: my_password
+      # MYSQL_PASSWORD: test1234
       MYSQL_ROOT_PASSWORD: root
     volumes:
        - mysql-data:/var/lib/mysql
     tty: true
-    
-  # ftp:
-  #   image: stilliard/pure-ftpd
-  #   container_name: pure-ftpd
-  #   ports:
-  #   - 21:21
-  #   - 30000-30100:30000-30100
-  #   volumes: 
-  #     - ./web/html:/home/test/html
-  #     - ./passwd:/etc/pure-ftpd/passwd
-  #   environment:
-  #     PUBLICHOST: "localhost"
-  #     FTP_USER_NAME: test
-  #     FTP_USER_PASS: test1234
-  #     FTP_USER_HOME: /home/test
-  #   restart: always
+
