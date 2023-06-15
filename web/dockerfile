@@ -22,7 +22,7 @@ RUN apt install -y php8.1-mysql php8.1-mbstring php8.1-gd php8.1-xml php8.1-xmlr
 RUN touch /var/log/php_errors.log && chmod 777 /var/log/php_errors.log
 
 # Apache
-RUN apt -y install apache2 libapache2-mod-php
+RUN apt -y install apache2 libapache2-mod-php8.1
 
 # composer
 RUN curl -sS https://getcomposer.org/installer | php && \
