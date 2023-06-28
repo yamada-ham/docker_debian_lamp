@@ -13,14 +13,14 @@ services:
       - 482:82
       - 483:83
       - 484:84
-      - 443:443
+      # - 443:443
       - 1480:8000
       - 1481:8001
       - 1482:8002
       - 5173:5173
-      - 20:20
-      - 21:21
-      - 30001-30005:30001-30005
+      # - 20:20
+      # - 21:21
+      # - 30001-30005:30001-30005
       # - 3000:3000
     restart: always
     volumes:
@@ -34,6 +34,7 @@ services:
       - ./web/volumes/ftp/user_conf:/etc/vsftpd/user_conf
       - ./web/volumes/ftp/chroot_list:/etc/vsftpd/chroot_list
       - ./web/volumes/ftp/user_list:/etc/vsftpd/user_list
+      - ./web/volumes/backup_db:/home/backup_db
     working_dir: /var/www/html
     tty: true
     platform: linux/x86_64
