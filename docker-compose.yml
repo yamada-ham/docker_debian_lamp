@@ -37,7 +37,7 @@ services:
       - ./web/volumes/backup_db:/home/backup_db
     working_dir: /var/www/html
     tty: true
-    platform: linux/x86_64
+    # platform: linux/x86_64 m1以外はコメントアウト
     privileged: true 
     depends_on: 
       - db
