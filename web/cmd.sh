@@ -1,6 +1,9 @@
 #!/bin/sh
 
 # バックグラウンドで実行するパッケージ
+# Redisサーバーを起動
+service redis-server start
+
 # apache2
 apache2ctl -D FOREGROUND &
 
